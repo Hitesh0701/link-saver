@@ -1,11 +1,11 @@
-<header class="header">
-  <nav class="navbar container">
+<header class="header align-self-center">
+  <nav class="navbar container h-100">
     <div class="row w-100">
       <div class="col-6">
         <a class="logo" href="#">LinkSaver</a>
       </div>
-      <div class="col-6 text-right">
-        <div class="btn-group" dropdown>
+      <div class="col-6 text-right text-white">
+        <div class="btn-group d-inline-block" dropdown>
           <a id="button-basic" dropdownToggle type="button" class="user-img"
           aria-controls="dropdown-basic">User Name</a>
           <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
@@ -14,7 +14,7 @@
             <li role="menuitem"><a class="dropdown-item" href="#">Logout</a></li>
           </ul>
         </div>
-        <div class="login-btns">
+        <div class="login-btns d-inline-block">
           <a (click)="openModal(login)">Login / SignUp</a>
         </div>
       </div>

@@ -1,3 +1,16 @@
+@import 'vars.scss';
+
 .header{
-    background-color: red($color: #000000);
+    background-color: $blue;
+    height: 55px;
+    .login-btns{
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: 0.40 ease all;
+        padding: 3px 15px;
+        border-radius: 5px;
+        &:hover{
+            border-color: $white;
+        }
+    }
 }
