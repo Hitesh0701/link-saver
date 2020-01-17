@@ -1,0 +1,83 @@
+// Main color
+$white: #ffffff;
+$black: #000000;
+$green: #65A238;
+$red: #ff0000;
+$checkbox_border_clr:#9B9B9B;
+$blue: #003F7D;
+$card_shadow: #DCE3EB;
+$yellow: #F5A000;
+$sky_light: #D5E6F7;
+$yellow_reedemed: #FFAD14;
+
+// new
+$text_clr:#282828;
+$icon_clr:#c3c3c3;
+$light_dark:#535353;
+$footer_bg: #f7f7f7;
+$background_light: #f1f5ff;
+$shadow_clr: #F0F2F4;
+$the_bay_bg: #F7FBFE;
+$footer_bg: #F1F7FE;
+$warning: #ff230b;
+
+// form
+$auth_text: #AAB7C9;
+$placeholder:#AAB7C9;
+$field_border: #D8E2EE;
+$radio-icon: #F5A000;
+$radio-acitve-text:#0E4456;
+$light_green:#66BB6A;
+$category-active: #EBF5FE;
+// Typography
+$heading1: 36px;
+$heading2: 35px;
+$heading3: 24px;
+$heading4: 20px;
+$heading5: 18px;
+$heading6: 16px;
+
+// Font size
+$font-xs:12px;
+$font-sm: 14px;
+$font-md: 16px;
+$primary-fs: 18px;
+$font-lg: 20px;
+
+// font-family 
+$ft-icomoon:'icomoon';
+$primary_font: 'Poppins';
+$roboto: 'Roboto';
+
+// spacer
+$ht-lg : 100px;
+$ht-md : 80px;
+$ht-sm : 60px;
+$ht-xs : 50px;
+$global-pd : 75px;
+
+// font-weight
+$thin:100;
+$light:300;
+$regular:400;
+$medium:500;
+$semibold:600;
+$bold:700;
+$wtblack:900;
+
+// Reponsive Grid
+// small size
+$screen-sm-max: 576px;
+$screen-sm-min: ($screen-sm-max - 1px);
+
+// medium size
+$screen-md-max: 768px;
+$screen-md-min: ($screen-md-max - 1px);
+
+// large size
+$screen-lg-max: 992px;
+$screen-lg-min: ($screen-lg-max - 1px);
+
+// xtra-large size
+$screen-xl-max: 1199px;
+$screen-xl-min: ($screen-xl-max - 1px);

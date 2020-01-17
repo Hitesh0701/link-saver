@@ -1,10 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { ProjectLayoutComponent } from "./layouts/project-layout/project-layout.component";
+import { NotFound404Component } from './component/not-found404/not-found404.component';
+import { HeaderComponent } from './component/header/header.component';
+import { FooterComponent } from './component/footer/footer.component';
+import { RouterModule } from '@angular/router';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { ModalModule } from 'ngx-bootstrap/modal';
 @NgModule({
-  declarations: [],
+  declarations: [
+    ProjectLayoutComponent,
+    NotFound404Component,
+    HeaderComponent,
+    FooterComponent
+  ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule,
+    BsDropdownModule,
+    ModalModule
   ]
 })
 export class CoreModule { }

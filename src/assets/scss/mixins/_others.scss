@@ -1,0 +1,75 @@
+// for component width height
+@mixin size($width, $height) {
+  width: $width;
+  height: $height;
+}
+
+// for component same width height
+@mixin square($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+// for max-width
+@mixin maxWidth($width, $alignment) {
+  max-width: $width;
+
+  @if $alignment=='right' {
+    margin-right: auto;
+  }
+
+  @else if $alignment=='center' {
+    margin: 0 auto;
+  }
+
+  @else if $alignment=='left' {
+    margin-left: auto;
+  }
+}
+
+// for background image
+@mixin backgrounImage($path, $size, $position, $repeat) {
+  background-image: url('$path');
+  background-size: $size;
+  background-position: $position;
+  background-repeat: $repeat;
+}
+
+@mixin boxShadow($top, $left, $blur, $color, $inset: false) {
+  @if $inset {
+    -webkit-box-shadow: inset $top $left $blur $color;
+    -moz-box-shadow: inset $top $left $blur $color;
+    box-shadow: inset $top $left $blur $color;
+  }
+
+  @else {
+    -webkit-box-shadow: $top $left $blur $color;
+    -moz-box-shadow: $top $left $blur $color;
+    box-shadow: $top $left $blur $color;
+  }
+}
+
+// learning
+@mixin WidthHeight($size, $width: false, $height: false) {
+  @if $width {
+    width: $size;
+  }
+
+  @if $height {
+    height: $size;
+  }
+}
+
+@mixin themeColor($light-theme: false) {
+  @if $light-theme {
+    background-color: $white;
+  }
+
+  @else {
+    background-color: $black;
+  }
+}
+// For padding
+  @mixin padding($vertical, $horizontal){
+    padding: $vertical $horizontal;
+  }
