@@ -1,0 +1,45 @@
+<div class="container profile-page-main">
+  <div class="card-main profile">
+    <div class="media user-detail">
+      <div class="user-image">
+        <img src="assets/images/user.png" alt="user name">
+      </div>
+      <div class="media-body">
+        <h4 class="name">Abhiraj Karma</h4>
+        <div class="row">
+          <div class="col-6">
+            <h4>abhiraj05@gmail.com</h4>
+          </div>
+          <div class="col-6">
+            <h4>Total Posts 25</h4>
+          </div>
+          <div class="col-6"></div>
+          <div class="col-6">
+            <button class="custom-btn secondary">Change Password</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h4 class="my-posts">My Posts</h4>
+  <div class="row">
+    <div class="col-9">
+      <div class="search-main">
+        <div class="field-outer with-add-btn">
+          <input type="text" class="form-control" placeholder="search">
+        </div>
+        <button class="custom-btn" [routerLink]="['/posts/add']">Add Post</button>
+      </div>
+      <ng-container>
+        <app-post-card></app-post-card>
+      </ng-container>
+      <ng-container>
+        <app-post-card></app-post-card>
+      </ng-container>
+      <ng-container>
+        <app-post-card></app-post-card>
+      </ng-container>
+    </div>
+    <div class="col-3"></div>
+  </div>
+</div>

@@ -5,12 +5,21 @@
     height: 55px;
     .login-btns{
         cursor: pointer;
-        border: 2px solid transparent;
+        border: 1px solid transparent;
         transition: 0.40 ease all;
         padding: 3px 15px;
         border-radius: 5px;
         &:hover{
             border-color: $white;
+        }
+    }
+    .user-img{
+        span{
+            margin-left: 7px;
+        }
+        img{
+            @include circle(40px, 50%);
+            box-shadow: 0 0 5px $white;
         }
     }
 }

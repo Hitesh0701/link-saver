@@ -1,0 +1,164 @@
+// All cards
+.card-main{
+    padding: 10px 20px;
+    border-radius: 6px;
+    box-shadow: 0 0 5px $card_shadow;
+    margin-bottom: 15px;
+    transition: 0.25s ease all;
+    &:hover{
+        box-shadow: 0 0 5px $card_shadow_hvr;
+    }
+    cursor: pointer;
+    b{
+        color: $blue;
+        font-weight: $medium;
+        &:not(:last-child){
+            width: 40px;
+        }
+    }
+    .card-head{
+        @include inline-between(inline-flex, 100%, space-between);
+        border-bottom: 1px solid $border-clr-light;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        h4{
+            font-size: $heading4;
+            display: inline-block;
+            color: $blue;
+            margin-bottom: 0;
+        }
+    }
+    .description{
+        @include webkit-box(2);
+        margin-bottom: 10px;
+    }
+    .urlLinks{
+        padding-left: 0px;
+        list-style-type: none;
+        .link{
+            padding: 0px 85px 0px 45px;
+            position: relative;
+            a{
+                word-break: break-all;
+                @include webkit-box(1);
+            }
+            b{
+                position: absolute;
+                top: 0;
+                &:first-child{
+                    left: 0;
+                }
+                &:last-child{
+                    width: 65px;
+                    right: 0;
+
+                }
+
+            }
+        }
+    }
+    .card-foot{
+        border-top: 1px solid $border-clr-light;
+        padding: 10px 0 5px;
+        margin-bottom: 0;
+        @include inline-between(inline-flex, 100%, space-between);
+        .posted-by{
+            line-height: 25px;
+        }
+        .date{
+            line-height: 33px;
+        }
+    }
+}
+
+// profile detail card css
+.profile-page-main{
+    .my-posts{
+        color: $blue;
+        margin: 30px 0 15px;
+    }
+}
+.profile{
+    margin-top: 20px;
+    .user-detail{
+        padding: 20px 10px;
+        .col-6{
+            margin-bottom: 10px;
+        }
+        .user-image{
+            img{
+                @include circle(100px, 50%);
+            }
+        }
+        .media-body{
+            padding-left: 30px;
+        }
+        h4{
+            font-weight: $regular;
+            font-size: $heading4;
+            color: $blue;
+            margin-bottom: 8px;
+            &.name{
+                border-bottom: 1px solid $border-clr-light;
+                padding-bottom: 7px;
+                font-weight: $medium;
+            }
+        }
+    }
+}
+
+.search-main{
+    @include inline-between(inline-flex, 100%, space-between);
+    .field-outer{
+        &.with-add-btn{
+            width: 70%;
+            display: inline-block;
+        }
+    }
+    .custom-btn{
+        width: 20%;
+        height: 45px;
+    }
+}
+// buttons
+.custom-btn{
+    transition: 0.25s ease all;
+    border: 1px solid grey;
+    padding: 7px;
+    border-radius: 5px;
+    @include interchange($blue, $white);
+    min-width: 125px;
+    &.secondary{
+        @include interchange($white, $blue);
+    }
+}
+
+.ui-tabview-panels{
+    height: 400px;
+    .ui-tabview-panel{
+        width: 80%;
+        margin: 0 auto;
+        padding-top: 50px !important;
+        .login-form{
+            padding-top: 50px;
+        }
+    }
+}
+.ui-tabview-nav{
+    li{
+        margin-right: 0px !important;
+        width: 50%;
+        text-align: center;
+    }
+}
+
+// usefulls
+.view-btn{
+    padding: 3px;
+    border: 1px solid $blue;
+    border-radius: 5px;
+    transition: 0.25s ease all;
+    width: 75px;
+    cursor: pointer;
+    @include interchange($white, $blue);
+}

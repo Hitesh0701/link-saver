@@ -25,241 +25,6 @@
       display: block;
     }
   }
-
-  &.auth {
-    @include maxWidth(300px, right);
-    position: relative;
-
-    @media(max-width:$screen-md-min) {
-      max-width: 100%;
-    }
-
-    .form-header {
-      padding-bottom: 30px;
-
-      &.pd-74 {
-        padding-bottom: 74px;
-      }
-
-      &.new-password {
-        padding-bottom: 43px;
-      }
-
-      h1 {
-        font-weight: $bold;
-        font-size: 30px;
-        line-height: 36px;
-        padding-bottom: 20px;
-        margin: 0;
-
-        @media(max-width:$screen-sm-min) {
-          font-size: 24px;
-          line-height: 24px;
-          padding-bottom: 10px;
-        }
-      }
-
-      p {
-        color: $auth_text;
-
-        @media(max-width:$screen-sm-min) {
-          font-size: $font-sm;
-        }
-
-        a {
-          color: $blue;
-          font-weight: $medium;
-          @include transition(all 0.25s ease);
-          position: relative;
-
-          &:before {
-            content: '';
-            position: absolute;
-            @include size(0, 2px);
-            left: 0;
-            bottom: -4px;
-            background-color: $blue;
-            opacity: 0;
-            visibility: hidden;
-            @include transition(all 0.25s ease);
-          }
-
-          &:hover {
-            &:before {
-              opacity: 1;
-              visibility: visible;
-              width: 100%;
-            }
-          }
-        }
-      }
-    }
-
-    &.otp-verification {
-      .form-header {
-        padding-left: 20px;
-
-        @media (max-width: $screen-md-min) {
-          padding-left: 0px;
-        }
-      }
-
-      .otp-timer {
-        font-size: 12px;
-        color: $auth_text;
-      }
-
-      .resend-otp {
-        color: $blue;
-        margin-top: 20px;
-        font-weight: 500;
-        text-decoration: underline;
-        cursor: pointer;
-        display: block;
-
-        &.isDisabled {
-          color: currentColor;
-          cursor: not-allowed !important;
-          pointer-events: none;
-          opacity: 0.5;
-        }
-      }
-
-      .back-to-login {
-        color: $auth_text;
-
-        &.mr-50 {
-          margin-top: 50px;
-        }
-
-        a {
-          color: $blue;
-          font-weight: 500;
-        }
-      }
-
-      .otp-enter-fields {
-        margin-bottom: 37px;
-        margin-top: 15px;
-        text-align: center;
-
-        input {
-          width: 50px;
-          display: inline;
-          margin-right: 20px;
-          text-align: center;
-
-          &:last-child {
-            margin-right: 0px;
-          }
-        }
-      }
-    }
-
-    .field-outer {
-      margin-bottom: 20px;
-
-      &.mr-30 {
-        margin-bottom: 38px;
-      }
-
-      &.forgot-radio-btns {
-        margin-bottom: 60px;
-
-        .forgot-radio {
-          &:first-child {
-            margin-right: 30px;
-          }
-        }
-
-        .ui-radiobutton-label {
-          margin-left: 11px;
-          color: $auth_text;
-          cursor: pointer;
-
-          &.ui-label-active {
-            color: $radio-acitve-text;
-          }
-        }
-      }
-
-      .ui-radiobutton-box {
-        border-color: $auth_text;
-
-        &.ui-state-active {
-          border-color: $radio-icon;
-          background-color: $white;
-
-          &.ui-state-focus {
-            box-shadow: 0px 0px 4px $radio-icon;
-          }
-
-          &:hover {
-            border-color: $radio-icon;
-            background-color: $radio-icon;
-
-            .ui-radiobutton-icon {
-              background-color: $white;
-            }
-          }
-
-          .ui-radiobutton-icon {
-            background-color: $radio-icon;
-          }
-        }
-      }
-
-      .forgot-password {
-        position: absolute;
-        right: 0;
-        font-size: $font-sm;
-        cursor: pointer;
-        color: $auth_text;
-        display: inline-block;
-        bottom: -37px;
-
-        &:hover {
-          color: $blue;
-          text-decoration: underline;
-        }
-      }
-
-      .form-control {
-        height: 40px;
-        color: $black;
-        -webkit-transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-        background-image: none !important;
-        padding: 10px 15px;
-        font-size: $font-sm;
-
-        &.is-invalid {
-          border-color: $red;
-        }
-
-        &:focus {
-          border-color: $blue;
-        }
-      }
-    }
-
-    .btn-outer {
-      margin-top: 25px;
-      text-align: center;
-
-      .btn {
-        min-width: 184px;
-      }
-
-      &.mr-40 {
-        margin-top: 40px;
-      }
-
-      &.mr-75 {
-        margin-top: 75px;
-      }
-    }
-  }
 }
 
 .field-outer {
@@ -366,26 +131,26 @@
 .form-control::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
   color: $placeholder;
-  font-size: $font-sm;
+  font-size: $font-md;
 }
 
 .form-control::-moz-placeholder {
   /* Firefox 19+ */
   color: $placeholder;
-  font-size: $font-sm;
+  font-size: $font-md;
 }
 
 .form-control:-ms-input-placeholder {
   /* IE 10+ */
   color: $placeholder;
-  font-size: $font-sm;
+  font-size: $font-md;
 }
 
 
 .form-control::-moz-placeholder {
   /* Firefox 18- */
   color: $placeholder;
-  font-size: $font-sm;
+  font-size: $font-md;
 }
 
 .ui-inputtext::-webkit-input-placeholder {

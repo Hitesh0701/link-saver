@@ -7,6 +7,10 @@ import { FooterComponent } from './component/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { PostsModule } from '../posts/posts.module';
+import {TabViewModule} from 'primeng/tabview';
+import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     ProjectLayoutComponent,
@@ -18,7 +22,10 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     CommonModule,
     RouterModule,
     BsDropdownModule,
-    ModalModule
+    ModalModule,
+    PostsModule,
+    TabViewModule,
+    ReactiveFormsModule
   ]
 })
 export class CoreModule { }

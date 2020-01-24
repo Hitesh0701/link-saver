@@ -1,3 +1,26 @@
-<p>
-  landing works!
-</p>
+<section class="posts-list-main pt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-9">
+                <div class="search-main">
+                    <div class="field-outer with-add-btn">
+                        <input type="text" class="form-control" placeholder="search">
+                    </div>
+                    <button class="custom-btn" [routerLink]="['/posts/add']">Add Post</button>
+                </div>
+                <ng-container>
+                    <app-post-card></app-post-card>
+                </ng-container>
+                <ng-container>
+                    <app-post-card></app-post-card>
+                </ng-container>
+                <ng-container>
+                <app-post-card></app-post-card>
+                </ng-container>
+                
+            </div>
+            <div class="col-3">
+            </div>
+        </div>
+    </div>
+</section>

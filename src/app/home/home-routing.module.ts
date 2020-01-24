@@ -11,17 +11,17 @@ const routes: Routes = [
     component: HomeLayoutComponent,
     children:[
       {
-        path: "",
-        component: LandingComponent
-      },
-      {
         path: "about-us",
         component: AboutUsComponent
       },
       {
         path: "contact-us",
         component: ContactUsComponent
-      }
+      },
+      {
+        path: "",
+        component: LandingComponent
+      },
     ]
   }
 ];
