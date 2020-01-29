@@ -15,7 +15,7 @@
           </div>
           <div class="col-6"></div>
           <div class="col-6">
-            <button class="custom-btn secondary">Change Password</button>
+            <button class="custom-btn secondary" (click)="openModal(changePassword)">Change Password</button>
           </div>
         </div>
       </div>
@@ -43,3 +43,47 @@
     <div class="col-3"></div>
   </div>
 </div>
+
+<!-- Change password Modal -->
+<ng-template #changePassword>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Change Password</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="changePasswordForm" (ngSubmit)="changePasswordFormSubmit()" class="form-main">
+      <div class="field-outer">
+        <input type="password" class="form-control" placeholder="Enter current password" formControlName="currentPassword"
+          [class.is-invalid]="changePasswordForm.controls.currentPassword.invalid && (changePasswordForm.controls.currentPassword.dirty || changePasswordForm.controls.currentPassword.touched) && ischangePasswordFormSubmitted">
+        <div
+          *ngIf="(changePasswordForm.controls.currentPassword.invalid && (changePasswordForm.controls.currentPassword.dirty || changePasswordForm.controls.currentPassword.touched) && ischangePasswordFormSubmitted)"
+          class="error-msg">
+          <p *ngIf="changePasswordForm.controls.currentPassword.hasError('required')">Current password is required </p>
+        </div>
+      </div>
+      <div class="field-outer">
+        <input type="password" class="form-control" placeholder="Enter password" formControlName="newPassword"
+          [class.is-invalid]="changePasswordForm.controls.newPassword.invalid && (changePasswordForm.controls.newPassword.dirty || changePasswordForm.controls.newPassword.touched) && ischangePasswordFormSubmitted">
+        <div
+          *ngIf="(changePasswordForm.controls.newPassword.invalid && (changePasswordForm.controls.newPassword.dirty || changePasswordForm.controls.newPassword.touched) && ischangePasswordFormSubmitted)"
+          class="error-msg">
+          <p *ngIf="changePasswordForm.controls.newPassword.hasError('required')"> New password is required </p>
+        </div>
+      </div>
+      <div class="field-outer">
+        <input type="text" class="form-control" placeholder="Enter password" formControlName="confirmPassword"
+          [class.is-invalid]="changePasswordForm.controls.confirmPassword.invalid && (changePasswordForm.controls.confirmPassword.dirty || changePasswordForm.controls.confirmPassword.touched) && ischangePasswordFormSubmitted">
+        <div
+          *ngIf="(changePasswordForm.controls.confirmPassword.invalid && (changePasswordForm.controls.confirmPassword.dirty || changePasswordForm.controls.confirmPassword.touched) && ischangePasswordFormSubmitted)"
+          class="error-msg">
+          <p *ngIf="changePasswordForm.controls.confirmPassword.hasError('required')"> Confirm password is required </p>
+        </div>
+      </div>
+      <div class="btn-outer mr-40 login-btn-outer text-center">
+        <button class="custom-btn secondary">Change Password</button>
+      </div>
+    </form>
+  </div>
+</ng-template>

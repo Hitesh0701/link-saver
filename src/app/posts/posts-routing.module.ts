@@ -10,7 +10,7 @@ const routes: Routes = [
     component: PostLayoutComponent,
     children: [
       {
-        path: "",
+        path: "detail",
         component: PostDetailComponent
       },
       {

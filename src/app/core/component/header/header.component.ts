@@ -1,6 +1,11 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { validateAllFormFields } from '../../utilities/custom-validators';
+import { UsersService } from '../../services/users/users.service';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-header',
@@ -9,13 +14,15 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class HeaderComponent implements OnInit {
   modalRef: BsModalRef;
+  private _unsubscribe$ = new Subject<boolean>();
 
   loginForm: FormGroup;
   signUpForm: FormGroup;
   isLoginFormSubmitted: boolean= false;
   isSignUpFormSubmitted: boolean= false;
   constructor(
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    private _userService: UsersService
   ) { }
 
   ngOnInit() {
@@ -29,7 +36,6 @@ export class HeaderComponent implements OnInit {
       email: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
       cpassword: new FormControl('', Validators.required)
-
     });
   }
   openModal(template: TemplateRef<any>) {
@@ -41,15 +47,49 @@ export class HeaderComponent implements OnInit {
   loginFormSubmit(){
     this.isLoginFormSubmitted =true;
     if(this.loginForm.valid){
-      console.log(this.loginForm.value)
-    }
+      this._userService.userLogin(this.loginForm.value)
+      .pipe(
+        takeUntil(this._unsubscribe$)
+      )
+      .subscribe((response: HttpResponse<any>) => {
+        localStorage.setItem('token', response.headers.get('Authorization'))
+        console.log("Result", response)
+        this.loginForm.reset();
+      },
+      error => {
+        // this._utility.routingAccordingToError(error);
+      }
+      );
+      }
+      else{
+        validateAllFormFields(this.loginForm);
+      }
   }
 
    // signUp form submit
    signUpFormSubmit(){
     this.isSignUpFormSubmitted =true;
     if(this.signUpForm.valid){
-      console.log(this.signUpForm.value)
+      this._userService.userSignUp(this.signUpForm.value)
+    .pipe(
+      takeUntil(this._unsubscribe$)
+    )
+    .subscribe((response: any) => {
+      console.log("Result", response.message)
+      this.signUpForm.reset();
+    },
+    error => {
+      // this._utility.routingAccordingToError(error);
     }
+    );
+    }
+    else{
+      validateAllFormFields(this.signUpForm);
+    }
+  }
+
+  ngOnDestroy() {
+    this._unsubscribe$.next(true);
+    this._unsubscribe$.complete();
   }
 }

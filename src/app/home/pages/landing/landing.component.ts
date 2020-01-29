@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersService } from 'src/app/core/services/users/users.service';
+import { takeUntil, take } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-landing',
@@ -6,10 +9,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./landing.component.scss']
 })
 export class LandingComponent implements OnInit {
-
-  constructor() { }
+  private _unsubscribe$ = new Subject<boolean>();
+  constructor(
+  ) { }
 
   ngOnInit() {
   }
-
+  ngOnDestroy() {
+    this._unsubscribe$.next(true);
+    this._unsubscribe$.complete();
+  }
 }

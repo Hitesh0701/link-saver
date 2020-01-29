@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { PostsRoutingModule } from './posts-routing.module';
 import { PostDetailComponent } from './pages/post-detail/post-detail.component';
@@ -11,7 +12,8 @@ import { PostLayoutComponent } from './post-layout/post-layout.component';
   declarations: [PostDetailComponent, PostAddComponent, PostCardComponent, PostLayoutComponent],
   imports: [
     CommonModule,
-    PostsRoutingModule
+    PostsRoutingModule,
+    ReactiveFormsModule
   ],
   exports:[
     PostCardComponent

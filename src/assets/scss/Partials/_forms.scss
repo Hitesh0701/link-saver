@@ -30,14 +30,35 @@
 .field-outer {
   margin-bottom: 25px;
   position: relative;
-
+  .add-links-label{
+    @include inline-between(inline-flex, 100%, space-between);
+    .icons{
+      margin-bottom: 15px !important;
+    }
+  }
+  .link-field-outer{
+    margin-bottom: 25px;
+    position: relative;
+    &.pad-right{
+      padding-right: 40px;
+    }
+    &.multiple{
+      padding-right: 45px;
+      position: relative;
+    }
+    .remove-icon{
+      position: absolute;
+      right: 0px;
+      top: 6px;
+    }
+  }
   .label {
     text-transform: capitalize;
     margin-bottom: 10px;
   }
 
   .form-control {
-    @include size(100%, 45px);
+    @include size(100%, 40px);
     border-radius: 4px;
     border: 1px solid $field_border;
     color: $black;
@@ -707,3 +728,19 @@ body .ui-datepicker table td>span.ui-state-active {
     padding: 39px 25px;
   }
 }
+.post-add-form{
+  .error-msg{
+    P{
+      bottom: -35px;
+    }
+  }
+}
+
+.icons{
+  padding: 4px 8px;
+  color: $white;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 25px;
+}
+

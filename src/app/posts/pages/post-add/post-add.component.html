@@ -1,3 +1,53 @@
-<p>
-  post-add works!
-</p>
+<section class="container add-post-form mt-5">
+  <div class="card-main pb-5 pt-5">
+    <h4 class="text-center mb-5">Fill details for make new post</h4>
+    <form [formGroup]="addPostForm" (ngSubmit)="addPostFormSubmit()" class="form-main post-add-form">
+      <div class="field-outer">
+        <label>Title</label>
+        <input type="text" class="form-control" placeholder="Enter title" formControlName="title"
+          [class.is-invalid]="addPostForm.controls.title.invalid && (addPostForm.controls.title.dirty || addPostForm.controls.title.touched) && isAddPostFormSubmited">
+        <div
+          *ngIf="(addPostForm.controls.title.invalid && (addPostForm.controls.title.dirty || addPostForm.controls.title.touched) && isAddPostFormSubmited)"
+          class="error-msg">
+          <p *ngIf="addPostForm.controls.title.hasError('required')">Post title is required </p>
+        </div>
+      </div>
+
+      <div formArrayName="links" class="field-outer">
+        <span class="add-links-label">
+          <label>Links</label>
+          <div (click)="addNewLink()" class="text-center"><span class="icons bg-success"><i class="icon-plus"></i></span></div>
+        </span>
+
+        <div [formGroupName]="i" class="links-fields" *ngFor="let item of links.controls; index as i">
+          <div class="link-field-outer" [class.pad-right]="links.length > 1">
+            <input type="text" class="form-control link-field" placeholder="Enter link" formControlName="link_urls"
+              [class.is-invalid]="item.controls.link_urls.invalid && (item.controls.link_urls.dirty || item.controls.link_urls.touched) && isAddPostFormSubmited">
+            <div
+              *ngIf="(item.controls.link_urls.invalid && (item.controls.link_urls.dirty || item.controls.link_urls.touched) && isAddPostFormSubmited)"
+              class="error-msg">
+              <p *ngIf="item.controls.link_urls.hasError('required')">Link is required </p>
+            </div>
+            <div class="remove-icon" (click)="removeLink(i)" *ngIf="links.length > 1"><span class="icons bg-danger"><i class="icon-minus"></i></span></div>    
+          </div>
+        </div>
+      </div>
+
+      <div class="field-outer">
+        <label>Description</label>
+        <textarea type="text" class="form-control" placeholder="Enter description" formControlName="description"
+          [class.is-invalid]="addPostForm.controls.description.invalid && (addPostForm.controls.description.dirty || addPostForm.controls.description.touched) && isAddPostFormSubmited">
+        </textarea>
+        <div
+          *ngIf="(addPostForm.controls.description.invalid && (addPostForm.controls.description.dirty || addPostForm.controls.description.touched) && isAddPostFormSubmited)"
+          class="error-msg">
+          <p *ngIf="addPostForm.controls.description.hasError('required')">Post description is required </p>
+        </div>
+      </div>
+      <div class="btn-outer login-btn-outer text-center add-post-btns">
+        <button type="reset" class="custom-btn secondary mr-1">Reset</button>
+        <button class="custom-btn primary ml-1">Submit</button>
+      </div> 
+    </form>
+  </div>
+</section>

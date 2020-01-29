@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { ProfileRoutingModule } from './profile-routing.module';
 import { ProfileLayoutComponent } from './profile-layout/profile-layout.component';
@@ -11,7 +12,8 @@ import { PostsModule } from '../posts/posts.module';
   imports: [
     CommonModule,
     ProfileRoutingModule,
-    PostsModule
+    PostsModule,
+    ReactiveFormsModule
   ]
 })
 export class ProfileModule { }
