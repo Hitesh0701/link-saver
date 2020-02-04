@@ -3,7 +3,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { validateAllFormFields } from '../../utilities/custom-validators';
 import { UsersService } from '../../services/users/users.service';
-import { Subject } from 'rxjs';
+import { Subject, BehaviorSubject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { HttpResponse } from '@angular/common/http';
 
@@ -15,11 +15,19 @@ import { HttpResponse } from '@angular/common/http';
 export class HeaderComponent implements OnInit {
   modalRef: BsModalRef;
   private _unsubscribe$ = new Subject<boolean>();
+  private _usersDataSource = new BehaviorSubject([]);
+  public userData$ = this._usersDataSource.asObservable();
+
 
   loginForm: FormGroup;
   signUpForm: FormGroup;
   isLoginFormSubmitted: boolean= false;
   isSignUpFormSubmitted: boolean= false;
+  isLoggedIn: boolean = false;
+  
+  // User Info after login
+  userData: any [];
+  
   constructor(
     private modalService: BsModalService,
     private _userService: UsersService
@@ -53,8 +61,13 @@ export class HeaderComponent implements OnInit {
       )
       .subscribe((response: HttpResponse<any>) => {
         localStorage.setItem('token', response.headers.get('Authorization'))
+        this.isLoggedIn == true;
         console.log("Result", response)
+        this.userData = response.body.data;
+        this._usersDataSource.next(this.userData);
+        console.log("User detail", this.userData);
         this.loginForm.reset();
+        this.modalRef.hide();
       },
       error => {
         // this._utility.routingAccordingToError(error);
@@ -64,6 +77,12 @@ export class HeaderComponent implements OnInit {
       else{
         validateAllFormFields(this.loginForm);
       }
+  }
+
+  logout(){
+    localStorage.removeItem('token')
+    localStorage.clear();
+    this.isLoggedIn == false;
   }
 
    // signUp form submit

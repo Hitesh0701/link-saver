@@ -5,17 +5,17 @@
         <a class="logo" [routerLink]="['/']">HK</a>
       </div>
       <div class="col-6 text-right text-white align-self-center">
-        <div class="btn-group d-inline-block" dropdown>
+        <div class="btn-group d-inline-block" *ngIf="isLoggedIn"  dropdown>
           <a id="button-basic" dropdownToggle type="button" class="user-img"
           aria-controls="dropdown-basic">
-        <img src="assets/images/user.png"><span>Name</span></a>
+        <img src="assets/images/user.png"><span>{{userData?.name}}</span></a>
           <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
           role="menu" aria-labelledby="button-basic">
             <li role="menuitem"><a class="dropdown-item" [routerLink]="['/profile']">Profile</a></li>
-            <li role="menuitem"><a class="dropdown-item" href="#">Logout</a></li>
+            <li role="menuitem"><a class="dropdown-item" href="#" (click)="logout()">Logout</a></li>
           </ul>
         </div>
-        <div class="login-btns d-inline-block">
+        <div class="login-btns d-inline-block" *ngIf="!isLoggedIn">
           <a (click)="openModal(login)">Login / SignUp</a>
         </div>
       </div>

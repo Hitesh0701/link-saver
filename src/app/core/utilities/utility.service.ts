@@ -137,20 +137,20 @@ export class UtilityService {
   
 
   resetPage() {
-    this.loader.stop();
+    // this.loader.stop();
     this.scrollToTop();
   }
 
   loaderStart() {
-    this.loader.start();
+    // this.loader.start();
   }
 
   loaderStop() {
-    this.loader.stop();
+    // this.loader.stop();
   }
 
   routingAccordingToError(error) {
-    this.errorHandler.routeAccordingToError(error);
+    // this.errorHandler.routeAccordingToError(error);
     this.resetPage();
   }
 
@@ -176,39 +176,39 @@ export class UtilityService {
     window.open(url, '_blank');
   }
 
-  toastSuccess(title, details) {
-    this.toast.success(details, title, {
-      closeButton: true,
-      positionClass: 'toast-top-center',
-      timeOut: 1500
-    });
-    // this.resetPage();
-  }
+  // toastSuccess(title, details) {
+  //   this.toast.success(details, title, {
+  //     closeButton: true,
+  //     positionClass: 'toast-top-center',
+  //     timeOut: 1500
+  //   });
+  //   // this.resetPage();
+  // }
 
-  toastInfo(title, details) {
-    this.toast.info(details, title, {
-      closeButton: true,
-      positionClass: 'toast-top-center',
-      timeOut: 1500
-    });
-    this.resetPage();
-  }
+  // toastInfo(title, details) {
+  //   this.toast.info(details, title, {
+  //     closeButton: true,
+  //     positionClass: 'toast-top-center',
+  //     timeOut: 1500
+  //   });
+  //   this.resetPage();
+  // }
 
-  toastWarning(title, details) {
-    this.toast.warning(details, title, {
-      closeButton: true,
-      positionClass: 'toast-top-center',
-      timeOut: 4000
-    });
-  }
+  // toastWarning(title, details) {
+  //   this.toast.warning(details, title, {
+  //     closeButton: true,
+  //     positionClass: 'toast-top-center',
+  //     timeOut: 4000
+  //   });
+  // }
 
-  toastError(title, details) {
-    this.toast.error(details, title, {
-      closeButton: true,
-      positionClass: 'toast-top-center',
-      timeOut: 4000
-    });
-  }
+  // toastError(title, details) {
+  //   this.toast.error(details, title, {
+  //     closeButton: true,
+  //     positionClass: 'toast-top-center',
+  //     timeOut: 4000
+  //   });
+  // }
 
   routeToUrl(url) {
     this.router.navigateByUrl(url);

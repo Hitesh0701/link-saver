@@ -15,8 +15,10 @@
 
       <div formArrayName="links" class="field-outer">
         <span class="add-links-label">
-          <label>Links</label>
-          <div (click)="addNewLink()" class="text-center"><span class="icons bg-success"><i class="icon-plus"></i></span></div>
+          <label>
+            Links
+          </label>
+          <div (click)="addNewLink()" class="text-center" aria-disabled="true"><span class="icons bg-success"><i class="icon-plus"></i></span></div>
         </span>
 
         <div [formGroupName]="i" class="links-fields" *ngFor="let item of links.controls; index as i">
