@@ -20,6 +20,26 @@ export class PostService implements OnInit{
   ngOnInit(){
   }
 
+  // get all posts
+  getAllPosts(){
+    return this._http.get(this.baseUrl + '/getAllPosts')
+    .pipe(
+      retry(1),
+      timeout(10000)
+    )
+  }
+
+  // get all posts of User
+  getAllPostsOfUser(){
+    return this._http.get(this.baseUrl + '/getAllPostsOfUser')
+    .pipe(
+      retry(1),
+      timeout(10000)
+    )
+  }
+
+
+
   addUpdatePosts(data){
     return this._http.post(this.baseUrl + '/createNewPost', data)
     .pipe(
