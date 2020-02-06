@@ -23,8 +23,8 @@ export class HeaderComponent implements OnInit {
   signUpForm: FormGroup;
   isLoginFormSubmitted: boolean= false;
   isSignUpFormSubmitted: boolean= false;
-  isLoggedIn: boolean = false;
-  
+  loggedIn$ = this._userService.loggedIn$;
+
   // User Info after login
   userData: any [];
   
@@ -34,6 +34,7 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log("status", this.loggedIn$);
     this.loginForm= new FormGroup({
       email: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required)
@@ -43,7 +44,7 @@ export class HeaderComponent implements OnInit {
       name: new FormControl('', Validators.required),
       email: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
-      cpassword: new FormControl('', Validators.required)
+      confirmPassword: new FormControl('', Validators.required)
     });
   }
   openModal(template: TemplateRef<any>) {
@@ -61,11 +62,10 @@ export class HeaderComponent implements OnInit {
       )
       .subscribe((response: HttpResponse<any>) => {
         localStorage.setItem('token', response.headers.get('Authorization'))
-        this.isLoggedIn == true;
-        console.log("Result", response)
         this.userData = response.body.data;
         this._usersDataSource.next(this.userData);
-        console.log("User detail", this.userData);
+        // this.loggedIn$ == true;
+        // this._userService.isUserLoggedIn();
         this.loginForm.reset();
         this.modalRef.hide();
       },
@@ -82,7 +82,7 @@ export class HeaderComponent implements OnInit {
   logout(){
     localStorage.removeItem('token')
     localStorage.clear();
-    this.isLoggedIn == false;
+    // this.isLoggedIn == false;
   }
 
    // signUp form submit
