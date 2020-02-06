@@ -1,4 +1,4 @@
-<div class="card-main" [routerLink]="['/posts/detail']">
+<div class="card-main" (click)="redirectCardDetail($event)">
   <div class="card-head">
     <h4>Title</h4>
   </div>
@@ -14,6 +14,6 @@
   </ul>
   <p class="card-foot">
     <span>24/1/2020</span>
-    <span class="posted-by"><b>By:</b> Abhiraj Karma</span>
+    <span class="posted-by"(click)="viewUserById()"><b>By:</b> Abhiraj Karma</span>
   </p>
 </div>
