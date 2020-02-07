@@ -21,7 +21,8 @@ export class PostService{
   getAllPosts(params){
     const PARAMS = new HttpParams({
       fromObject: {
-        page: params.currentPage
+        page: params.currentPage,
+        limit: params.limit
       }
     });
 

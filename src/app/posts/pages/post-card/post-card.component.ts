@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 })
 export class PostCardComponent implements OnInit {
 
+  @Input() postsData: string;
+
   constructor(
     private router: Router
   ) { }
@@ -15,12 +17,12 @@ export class PostCardComponent implements OnInit {
   ngOnInit() {
   }
 
-  redirectCardDetail(event){
-    event.stopPropogation();
-    event.preventDefault();
-    this.router.navigate(['/auth/login']);
+  redirectCardDetail($event){
+    $event.stopPropagation();
+    $event.preventDefault();
+    this.router.navigate(['/detail']);
   }
   viewUserById(){
-    
+    this.router.navigate(['/profile']);
   }
 }

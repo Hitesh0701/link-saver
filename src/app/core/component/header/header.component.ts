@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit {
   isLoggedIn: Observable<boolean>;
 
   // User Info after login
-  userData: any[];
+  userData: any;
 
   constructor(
     private modalService: BsModalService,
@@ -41,6 +41,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     if (localStorage.getItem("token")) {
       this._userService.isLoggedIn.next(true);
+      this.userData =this._storeService.getCurrentState().userData;
+
     } else {
       this._userService.isLoggedIn.next(false);
     }
@@ -74,7 +76,6 @@ export class HeaderComponent implements OnInit {
   signUpFormSubmit() {
     this.isSignUpFormSubmitted = true;
     if (this.signUpForm.valid) {
-      console.log(this.signUpForm.value);
       this._utility.loaderStart();
       this._userService
         .userSignUp(this.signUpForm.value)

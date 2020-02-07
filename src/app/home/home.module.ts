@@ -7,13 +7,15 @@ import { LandingComponent } from './pages/landing/landing.component';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { ContactUsComponent } from './pages/contact-us/contact-us.component';
 import { PostsModule } from '../posts/posts.module';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [HomeLayoutComponent, LandingComponent, AboutUsComponent, ContactUsComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,
-    PostsModule
+    PostsModule,
+    InfiniteScrollModule
   ]
 })
 export class HomeModule { }

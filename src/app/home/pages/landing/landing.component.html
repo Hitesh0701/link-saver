@@ -8,20 +8,21 @@
           </div>
           <button class="custom-btn" [routerLink]="['/posts/add']">Add Post</button>
         </div>
-        <ng-container>
-          <app-post-card></app-post-card>
+        <div
+        infiniteScroll
+        [infiniteScrollDistance]="2"
+        [infiniteScrollThrottle]="300"
+        (scrolled)="onScroll()"
+        >
+        <ng-container *ngFor="let item of allPosts; index as i" >
+          {{i}}
+          <app-post-card [postsData]="item"></app-post-card>
         </ng-container>
-        <ng-container>
-          <app-post-card></app-post-card>
-        </ng-container>
-        <ng-container>
-          <app-post-card></app-post-card>
-        </ng-container>
+        </div
+        >
       </div>
       <div class="col-3">
       </div>
     </div>
   </div>
-  <button (click)="showSuccess()">Show Success</button>
-  <button (click)="showLoader()">Loader Start</button>
 </section>
