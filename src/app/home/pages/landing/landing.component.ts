@@ -11,6 +11,8 @@ import { PostService } from 'src/app/core/services/posts/post.service';
 export class LandingComponent implements OnInit {
   private _unsubscribe$ = new Subject<boolean>();
   allPosts: any = [];
+  currentPage = 1;
+  postsLimit = 1;
 
   constructor(
     private _postsService: PostService
@@ -21,7 +23,11 @@ export class LandingComponent implements OnInit {
   }
 
   getAllPosts(){
-    this._postsService.getAllPosts()
+    const params = {
+      currentPage: this.currentPage,
+      limit: this.postsLimit
+    }
+    this._postsService.getAllPosts(params)
     .pipe(
       takeUntil(this._unsubscribe$)
     )

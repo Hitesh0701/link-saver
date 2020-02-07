@@ -2,12 +2,15 @@ import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BaseService } from '../base-service/base.service';
 import { retry, timeout } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService implements OnInit {
   baseUrl: any;
+  isLoggedIn = new BehaviorSubject<boolean>(false);
+
   constructor(
     private _baseService: BaseService,
     private _http: HttpClient
@@ -16,6 +19,10 @@ export class UsersService implements OnInit {
   }
 
   ngOnInit(){
+  }
+
+  get loggedIn() {
+    return this.isLoggedIn.asObservable();
   }
 
   getAllUsers(){
@@ -34,6 +41,13 @@ export class UsersService implements OnInit {
       timeout(10000)
     )
   }
+  
+  userLogout(){
+    localStorage.removeItem('token')
+    this.isLoggedIn.next(false);
+    window.location.reload();
+  }
+
   // Sign Up
   userSignUp(data){
     return this._http.post(this.baseUrl + '/register', data)

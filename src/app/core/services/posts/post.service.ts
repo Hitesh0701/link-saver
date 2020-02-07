@@ -1,5 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { BaseService } from '../base-service/base.service';
 import { retry, timeout } from 'rxjs/operators';
 
@@ -7,7 +7,7 @@ import { retry, timeout } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class PostService implements OnInit{
+export class PostService{
   baseUrl: any;
 
   constructor(
@@ -17,12 +17,15 @@ export class PostService implements OnInit{
     this.baseUrl = this._baseService.baseUrl;
   }
 
-  ngOnInit(){
-  }
-
   // get all posts
-  getAllPosts(){
-    return this._http.get(this.baseUrl + '/getAllPosts')
+  getAllPosts(params){
+    const PARAMS = new HttpParams({
+      fromObject: {
+        page: params.currentPage
+      }
+    });
+
+    return this._http.get(this.baseUrl + '/getAllPosts', { params: PARAMS })
     .pipe(
       retry(1),
       timeout(10000)

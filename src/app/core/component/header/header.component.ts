@@ -3,7 +3,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { validateAllFormFields } from '../../utilities/custom-validators';
 import { UsersService } from '../../services/users/users.service';
-import { Subject, BehaviorSubject } from 'rxjs';
+import { Subject, BehaviorSubject, Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { HttpResponse } from '@angular/common/http';
 
@@ -18,13 +18,13 @@ export class HeaderComponent implements OnInit {
   private _usersDataSource = new BehaviorSubject([]);
   public userData$ = this._usersDataSource.asObservable();
 
-
   loginForm: FormGroup;
   signUpForm: FormGroup;
   isLoginFormSubmitted: boolean= false;
   isSignUpFormSubmitted: boolean= false;
-  isLoggedIn: boolean = false;
-  
+
+  isLoggedIn: Observable<boolean>;
+ 
   // User Info after login
   userData: any [];
   
@@ -34,6 +34,16 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    
+    
+    if (localStorage.getItem('token')) {
+      this._userService.isLoggedIn.next(true);
+    } else {
+      this._userService.isLoggedIn.next(false);
+    }
+    
+    this.isLoggedIn = this._userService.loggedIn;
+
     this.loginForm= new FormGroup({
       email: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required)
@@ -50,7 +60,6 @@ export class HeaderComponent implements OnInit {
     this.modalRef = this.modalService.show(template);
   }
 
-
   // Login form submit
   loginFormSubmit(){
     this.isLoginFormSubmitted =true;
@@ -60,14 +69,14 @@ export class HeaderComponent implements OnInit {
         takeUntil(this._unsubscribe$)
       )
       .subscribe((response: HttpResponse<any>) => {
-        localStorage.setItem('token', response.headers.get('Authorization'))
-        this.isLoggedIn == true;
-        console.log("Result", response)
+        localStorage.setItem('token', response.headers.get('Authorization'));
+        console.log("Result", response);
         this.userData = response.body.data;
         this._usersDataSource.next(this.userData);
         console.log("User detail", this.userData);
         this.loginForm.reset();
         this.modalRef.hide();
+        window.location.reload();
       },
       error => {
         // this._utility.routingAccordingToError(error);
@@ -79,12 +88,7 @@ export class HeaderComponent implements OnInit {
       }
   }
 
-  logout(){
-    localStorage.removeItem('token')
-    localStorage.clear();
-    this.isLoggedIn == false;
-  }
-
+  
    // signUp form submit
    signUpFormSubmit(){
     this.isSignUpFormSubmitted =true;
@@ -107,6 +111,10 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  // Logout
+  logout(){
+    this._userService.userLogout();
+  }
   ngOnDestroy() {
     this._unsubscribe$.next(true);
     this._unsubscribe$.complete();

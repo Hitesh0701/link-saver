@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersService } from '../../services/users/users.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-project-layout',
@@ -7,8 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectLayoutComponent implements OnInit {
 
-  constructor() { }
+  isLoggedIn$: Observable<any>;
 
-  ngOnInit() {
+  constructor(
+    private _userService: UsersService
+    ) { }
+    
+    ngOnInit() {
+      this.isLoggedIn$ = this._userService.isLoggedIn;
   }
 }
