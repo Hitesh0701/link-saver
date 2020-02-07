@@ -1,18 +1,25 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { CoreModule } from './core/core.module';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ModalModule } from 'ngx-bootstrap/modal';
-import { PostsModule } from './posts/posts.module';
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { CoreModule } from "./core/core.module";
+import { BsDropdownModule } from "ngx-bootstrap/dropdown";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { ModalModule } from "ngx-bootstrap/modal";
+import { PostsModule } from "./posts/posts.module";
 
+// ngx ui loader
+import {
+  NgxUiLoaderModule,
+  NgxUiLoaderConfig,
+  NgxUiLoaderHttpModule
+} from "ngx-ui-loader";
+const ngxUiLoaderConfig: NgxUiLoaderConfig = {
+  fgsType: "square-jelly-box"
+};
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -20,9 +27,11 @@ import { PostsModule } from './posts/posts.module';
     PostsModule,
     BsDropdownModule.forRoot(),
     BrowserAnimationsModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
+    NgxUiLoaderHttpModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

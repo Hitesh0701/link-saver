@@ -21,5 +21,21 @@
             <div class="col-3">
             </div>
         </div>
+        <ng-container>
+          <app-post-card></app-post-card>
+        </ng-container>
+        <ng-container>
+          <app-post-card></app-post-card>
+        </ng-container>
+        <ng-container>
+          <app-post-card></app-post-card>
+        </ng-container>
+
+      </div>
+      <div class="col-3">
+      </div>
     </div>
+  </div>
+  <button (click)="showSuccess()">Show Success</button>
+  <button (click)="showLoader()">Loader Start</button>
 </section>
