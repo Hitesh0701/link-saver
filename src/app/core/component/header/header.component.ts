@@ -22,9 +22,14 @@ export class HeaderComponent implements OnInit {
   signUpForm: FormGroup;
   isLoginFormSubmitted: boolean= false;
   isSignUpFormSubmitted: boolean= false;
+<<<<<<< HEAD
 
   isLoggedIn: Observable<boolean>;
  
+=======
+  loggedIn$ = this._userService.loggedIn$;
+
+>>>>>>> 05ee2b21db997c080158993867380d6bac96f723
   // User Info after login
   userData: any [];
   
@@ -34,6 +39,7 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+<<<<<<< HEAD
     
     
     if (localStorage.getItem('token')) {
@@ -44,6 +50,9 @@ export class HeaderComponent implements OnInit {
     
     this.isLoggedIn = this._userService.loggedIn;
 
+=======
+    console.log("status", this.loggedIn$);
+>>>>>>> 05ee2b21db997c080158993867380d6bac96f723
     this.loginForm= new FormGroup({
       email: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required)
@@ -53,7 +62,7 @@ export class HeaderComponent implements OnInit {
       name: new FormControl('', Validators.required),
       email: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
-      cpassword: new FormControl('', Validators.required)
+      confirmPassword: new FormControl('', Validators.required)
     });
   }
   openModal(template: TemplateRef<any>) {
@@ -69,11 +78,16 @@ export class HeaderComponent implements OnInit {
         takeUntil(this._unsubscribe$)
       )
       .subscribe((response: HttpResponse<any>) => {
+<<<<<<< HEAD
         localStorage.setItem('token', response.headers.get('Authorization'));
         console.log("Result", response);
+=======
+        localStorage.setItem('token', response.headers.get('Authorization'))
+>>>>>>> 05ee2b21db997c080158993867380d6bac96f723
         this.userData = response.body.data;
         this._usersDataSource.next(this.userData);
-        console.log("User detail", this.userData);
+        // this.loggedIn$ == true;
+        // this._userService.isUserLoggedIn();
         this.loginForm.reset();
         this.modalRef.hide();
         window.location.reload();
@@ -88,7 +102,16 @@ export class HeaderComponent implements OnInit {
       }
   }
 
+<<<<<<< HEAD
   
+=======
+  logout(){
+    localStorage.removeItem('token')
+    localStorage.clear();
+    // this.isLoggedIn == false;
+  }
+
+>>>>>>> 05ee2b21db997c080158993867380d6bac96f723
    // signUp form submit
    signUpFormSubmit(){
     this.isSignUpFormSubmitted =true;

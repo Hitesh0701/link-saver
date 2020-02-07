@@ -88,12 +88,12 @@
             </div>
           </div>
           <div class="field-outer">
-            <input type="text" class="form-control" placeholder="Enter confirm password" formControlName="cpassword"
-              [class.is-invalid]="signUpForm.controls.cpassword.invalid && (signUpForm.controls.cpassword.dirty || signUpForm.controls.cpassword.touched) && isSignUpFormSubmitted">
+            <input type="text" class="form-control" placeholder="Enter confirm password" formControlName="confirmPassword"
+              [class.is-invalid]="signUpForm.controls.confirmPassword.invalid && (signUpForm.controls.confirmPassword.dirty || signUpForm.controls.confirmPassword.touched) && isSignUpFormSubmitted">
             <div
-              *ngIf="(signUpForm.controls.cpassword.invalid && (signUpForm.controls.cpassword.dirty || signUpForm.controls.cpassword.touched) && isSignUpFormSubmitted)"
+              *ngIf="(signUpForm.controls.confirmPassword.invalid && (signUpForm.controls.confirmPassword.dirty || signUpForm.controls.confirmPassword.touched) && isSignUpFormSubmitted)"
               class="error-msg">
-              <p *ngIf="signUpForm.controls.cpassword.hasError('required')"> Confirm password is required </p>
+              <p *ngIf="signUpForm.controls.confirmPassword.hasError('required')"> Confirm password is required </p>
             </div>
           </div>
           <div class="btn-outer mr-40 login-btn-outer text-center">

@@ -9,7 +9,12 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class UsersService implements OnInit {
   baseUrl: any;
+<<<<<<< HEAD
   isLoggedIn = new BehaviorSubject<boolean>(false);
+=======
+  private _userLoggedIn = new BehaviorSubject<boolean>(false);
+  public loggedIn$ = this._userLoggedIn.asObservable();
+>>>>>>> 05ee2b21db997c080158993867380d6bac96f723
 
   constructor(
     private _baseService: BaseService,
@@ -32,7 +37,9 @@ export class UsersService implements OnInit {
       timeout(10000)
     )
   }
-
+  get isUserLoggedIn(){
+    return  this.loggedIn$;
+  }
   // login 
   userLogin(data){
     return this._http.post(this.baseUrl + '/login', data, { observe: 'response' })

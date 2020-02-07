@@ -12,4 +12,11 @@ export class PostCardComponent implements OnInit {
   ngOnInit() {
   }
 
+  redirectCardDetail(event){
+    event.stopPropogation();
+    event.preventDefault();
+  }
+  viewUserById(){
+    
+  }
 }
