@@ -158,16 +158,19 @@ export class UtilityService {
     this.scrollToTop();
   }
 
+  // start loader
   loaderStart() {
     this._loader.start();
   }
 
+  //  Loder stop
   loaderStop() {
     this._loader.stop();
   }
 
+  // error msg
   routingAccordingToError(error) {
-    // this.errorHandler.routeAccordingToError(error);
+    this.errorHandler.routeAccordingToError(error);
     this.resetPage();
   }
 

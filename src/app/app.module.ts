@@ -9,12 +9,15 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ModalModule } from "ngx-bootstrap/modal";
 import { PostsModule } from "./posts/posts.module";
 
+import { TokenInterceptorService } from "./core/interceptors/token-interceptor.service";
+
 // ngx ui loader
 import {
   NgxUiLoaderModule,
   NgxUiLoaderConfig,
   NgxUiLoaderHttpModule
 } from "ngx-ui-loader";
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   fgsType: "square-jelly-box"
 };
@@ -31,7 +34,13 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     NgxUiLoaderHttpModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

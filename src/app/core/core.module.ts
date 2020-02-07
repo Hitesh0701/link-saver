@@ -13,6 +13,8 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ToastrModule } from "ngx-toastr";
+import { TokenInterceptorService } from "./interceptors/token-interceptor.service";
+import { UtilityService } from "./utilities/utility.service";
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { ToastrModule } from "ngx-toastr";
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot()
-  ]
+  ],
+  providers: [TokenInterceptorService, UtilityService]
 })
 export class CoreModule {}
