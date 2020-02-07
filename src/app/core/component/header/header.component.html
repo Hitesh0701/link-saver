@@ -5,12 +5,10 @@
         <a class="logo" [routerLink]="['/']">HK</a>
       </div>
       <div class="col-6 text-right text-white align-self-center">
-        <div class="btn-group d-inline-block" *ngIf="(isLoggedIn | async)"  dropdown>
-          <a id="button-basic" dropdownToggle type="button" class="user-img"
-          aria-controls="dropdown-basic">
-        <img src="assets/images/user.png"><span>{{userData?.name}}</span></a>
-          <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
-          role="menu" aria-labelledby="button-basic">
+        <div class="btn-group d-inline-block" *ngIf="(isLoggedIn | async)" dropdown>
+          <a id="button-basic" dropdownToggle type="button" class="user-img" aria-controls="dropdown-basic">
+            <img src="assets/images/user.png"><span>{{userData?.name}}</span></a>
+          <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
             <li role="menuitem"><a class="dropdown-item" [routerLink]="['/profile']">Profile</a></li>
             <li role="menuitem"><a class="dropdown-item" href="#" (click)="logout()">Logout</a></li>
           </ul>
@@ -23,7 +21,7 @@
   </nav>
 </header>
 
- <!-- Login & signUp Modal  -->
+<!-- Login & signUp Modal  -->
 <ng-template #login>
   <div class="modal-header">
     <h4 class="modal-title pull-left">Modal</h4>
@@ -38,10 +36,17 @@
           <div class="field-outer">
             <input type="email" class="form-control" placeholder="Enter email Id" formControlName="email"
               [class.is-invalid]="loginForm.controls.email.invalid && (loginForm.controls.email.dirty || loginForm.controls.email.touched) && isLoginFormSubmitted">
+
             <div
               *ngIf="(loginForm.controls.email.invalid && (loginForm.controls.email.dirty || loginForm.controls.email.touched) && isLoginFormSubmitted)"
               class="error-msg">
-              <p *ngIf="loginForm.controls.email.hasError('required')"> Email is required </p>
+              <p *ngIf="loginForm.controls.email.hasError('required')">
+                Email is required
+              </p>
+              <p
+                *ngIf="loginForm.controls.email.hasError('validateEmail') && !loginForm.controls.email.hasError('required')">
+                Please enter valid email
+              </p>
             </div>
           </div>
           <div class="field-outer">
@@ -72,10 +77,17 @@
           <div class="field-outer">
             <input type="email" class="form-control" placeholder="Enter email Id" formControlName="email"
               [class.is-invalid]="signUpForm.controls.email.invalid && (signUpForm.controls.email.dirty || signUpForm.controls.email.touched) && isSignUpFormSubmitted">
+
             <div
               *ngIf="(signUpForm.controls.email.invalid && (signUpForm.controls.email.dirty || signUpForm.controls.email.touched) && isSignUpFormSubmitted)"
               class="error-msg">
-              <p *ngIf="signUpForm.controls.email.hasError('required')"> Email is required </p>
+              <p *ngIf="signUpForm.controls.email.hasError('required')">
+                Email is required
+              </p>
+              <p
+                *ngIf="signUpForm.controls.email.hasError('validateEmail') && !signUpForm.controls.email.hasError('required')">
+                Please enter valid email
+              </p>
             </div>
           </div>
           <div class="field-outer">
@@ -88,7 +100,8 @@
             </div>
           </div>
           <div class="field-outer">
-            <input type="text" class="form-control" placeholder="Enter confirm password" formControlName="confirmPassword"
+            <input type="password" class="form-control" placeholder="Enter confirm password"
+              formControlName="confirmPassword"
               [class.is-invalid]="signUpForm.controls.confirmPassword.invalid && (signUpForm.controls.confirmPassword.dirty || signUpForm.controls.confirmPassword.touched) && isSignUpFormSubmitted">
             <div
               *ngIf="(signUpForm.controls.confirmPassword.invalid && (signUpForm.controls.confirmPassword.dirty || signUpForm.controls.confirmPassword.touched) && isSignUpFormSubmitted)"

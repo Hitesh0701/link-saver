@@ -49,14 +49,20 @@ export class HeaderComponent implements OnInit {
     // signup form
     this.signUpForm = new FormGroup({
       name: new FormControl("", Validators.required),
-      email: new FormControl("", Validators.required),
+      email: new FormControl("", [
+        Validators.required,
+        this._utility.validateEmail
+      ]),
       password: new FormControl("", Validators.required),
       confirmPassword: new FormControl("", Validators.required)
     });
 
     // login form
     this.loginForm = new FormGroup({
-      email: new FormControl("", Validators.required),
+      email: new FormControl("", [
+        Validators.required,
+        this._utility.validateEmail
+      ]),
       password: new FormControl("", Validators.required)
     });
   }
@@ -64,51 +70,12 @@ export class HeaderComponent implements OnInit {
     this.modalRef = this.modalService.show(template);
   }
 
-  // Login form submit
-  loginFormSubmit() {
-    this.isLoginFormSubmitted = true;
-    this._utility.loaderStart();
-    if (this.loginForm.valid) {
-      this._userService
-        .userLogin(this.loginForm.value)
-        .pipe(takeUntil(this._unsubscribe$))
-        .subscribe(
-          (response: HttpResponse<any>) => {
-            localStorage.setItem(
-              "token",
-              response.headers.get("Authorization")
-            );
-            this._utility.loaderStop();
-            this._utility.toastSuccess("Success", "Welcome to Link Saver.");
-            console.log("Result", response);
-            this.userData = response.body.data;
-            this._usersDataSource.next(this.userData);
-
-            // set state for userdata
-            this._storeService.setState({
-              userData: response.body.data
-            });
-            // this.loggedIn$ == true;
-            // this._userService.isUserLoggedIn();
-            this.loginForm.reset();
-            this.modalRef.hide();
-            // window.location.reload();
-          },
-          error => {
-            this._utility.routingAccordingToError(error);
-          }
-        );
-    } else {
-      validateAllFormFields(this.loginForm);
-    }
-  }
-
   // signUp form submit
   signUpFormSubmit() {
     this.isSignUpFormSubmitted = true;
-    this._utility.loaderStart();
     if (this.signUpForm.valid) {
       console.log(this.signUpForm.value);
+      this._utility.loaderStart();
       this._userService
         .userSignUp(this.signUpForm.value)
         .pipe(takeUntil(this._unsubscribe$))
@@ -128,6 +95,41 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  // Login form submit
+  loginFormSubmit() {
+    this.isLoginFormSubmitted = true;
+    if (this.loginForm.valid) {
+      this._utility.loaderStart();
+      this._userService
+        .userLogin(this.loginForm.value)
+        .pipe(takeUntil(this._unsubscribe$))
+        .subscribe(
+          (response: HttpResponse<any>) => {
+            localStorage.setItem(
+              "token",
+              response.headers.get("Authorization")
+            );
+            this._utility.loaderStop();
+            this._utility.toastSuccess("Success", "Welcome to Link Saver.");
+            console.log("Result", response);
+            this.userData = response.body.data;
+            this._usersDataSource.next(this.userData);
+
+            // set state for userdata
+            this._storeService.setState({
+              userData: response.body.data
+            });
+            this.loginForm.reset();
+            this.modalRef.hide();
+          },
+          error => {
+            this._utility.routingAccordingToError(error);
+          }
+        );
+    } else {
+      validateAllFormFields(this.loginForm);
+    }
+  }
   // Logout
   logout() {
     this._userService.userLogout();
