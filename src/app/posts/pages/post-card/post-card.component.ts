@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-post-card',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostCardComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
@@ -15,6 +18,7 @@ export class PostCardComponent implements OnInit {
   redirectCardDetail(event){
     event.stopPropogation();
     event.preventDefault();
+    this.router.navigate(['/auth/login']);
   }
   viewUserById(){
     
