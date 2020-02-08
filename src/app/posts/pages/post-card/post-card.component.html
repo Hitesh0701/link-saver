@@ -1,25 +1,20 @@
 <div class="card-main" (click)="redirectCardDetail($event)">
   <div class="card-head">
-    <h4>{{item.post?.title}}</h4>
+    <h4>{{postsData?.post?.title}}</h4>
   </div>
-  <p class="description"><b>Description : </b> It is a long established fact that a reader will be distracted by the
-    readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
-    normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable
-    English. Many desktop ok publishing packages and web page editors now use Lorem Ipsum as their default model text,
-    and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved
-    over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+  <p class="description"><b>Description : </b>{{postsData?.post?.title}} </p>
   <ul class="urlLinks">
     <li class="link">
       <b>Link : </b>
-      <a class="urlLink" href="https://www.primefaces.org/primeng/#/menubar"
-        target="_blank">https://www.primefaces.org/primeng/#/menubar</a>
-      <b>
-        +2 more
+      <a class="urlLink" [href]="postsData?.post?.link_urls[0].link_url"
+        target="_blank">{{postsData?.post?.link_urls[0].link_url}}</a>
+      <b *ngIf="postsData?.post?.link_urls.length > 1">
+        +{{postsData?.post?.link_urls.length - 1}} more
       </b>
     </li>
   </ul>
   <p class="card-foot">
-    <span>24/1/2020</span>
-    <span class="posted-by" (click)="viewUserById()"><b>By:</b> Abhiraj Karma</span>
+    <span>{{postsData?.post?.created_on | date}}</span>
+    <span class="posted-by" (click)="viewUserById()"><b>By:</b> {{postsData?.user?.name}}</span>
   </p>
 </div>
