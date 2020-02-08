@@ -2,7 +2,7 @@ import { Routes } from "@angular/router";
 
 export const ALL_ROUTES: Routes = [
   {
-    path: "profile",
+    path: "profile/:id",
     loadChildren: "./profile/profile.module#ProfileModule"
   },
   {

@@ -7,9 +7,10 @@
       <div class="col-6 text-right text-white align-self-center">
         <div class="btn-group d-inline-block" *ngIf="(isLoggedIn | async)" dropdown>
           <a id="button-basic" dropdownToggle type="button" class="user-img" aria-controls="dropdown-basic">
-            <img src="assets/images/user.png"><span>{{userData?.name}}</span></a>
+            <span>{{userData?.name}}</span>
+            <img src="assets/images/user.png"></a>
           <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
-            <li role="menuitem"><a class="dropdown-item" [routerLink]="['/profile']">Profile</a></li>
+            <li role="menuitem"><a class="dropdown-item" [routerLink]="['/profile', 1]">Profile</a></li>
             <li role="menuitem"><a class="dropdown-item" href="#" (click)="logout()">Logout</a></li>
           </ul>
         </div>

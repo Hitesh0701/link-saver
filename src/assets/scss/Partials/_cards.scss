@@ -67,6 +67,7 @@
         @include inline-between(inline-flex, 100%, space-between);
         .posted-by{
             line-height: 25px;
+            text-transform: capitalize;
         }
         .date{
             line-height: 33px;

@@ -28,7 +28,8 @@ export class LandingComponent implements OnInit {
       this.getAllPosts();
     }
     this.userData$
-      .pipe(takeUntil(this._unsubscribe$))
+      .pipe(
+        takeUntil(this._unsubscribe$))
       .subscribe((userData: UserData) => {
         console.log("userData in landing page", userData);
         // this.userDetails = userData;
@@ -53,11 +54,8 @@ export class LandingComponent implements OnInit {
       .pipe(takeUntil(this._unsubscribe$))
       .subscribe(
         (response: any) => {
-          console.log("Posts", response);
           this.lastPage = response.data.lastPage;
           this.allPosts = [...this.allPosts, ...response.data.postsList];
-          // console.log(this.allPosts)
-          // console.log("page", this.currentPage)
         },
         error => {
           this._utility.routingAccordingToError(error);

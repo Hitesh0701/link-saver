@@ -15,8 +15,6 @@
         (scrolled)="onScroll()"
         >
         <ng-container *ngFor="let item of allPosts; index as i" >
-        console.log("Post length", postsData.post.link_urls.length);
-
           <app-post-card [postsData]="item"></app-post-card>
         </ng-container>
         </div

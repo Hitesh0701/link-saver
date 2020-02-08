@@ -30,6 +30,7 @@ export class UsersService implements OnInit {
   // get isUserLoggedIn(){
   //   return  this.loggedIn$.asObservable();
   // }
+
   // login
   userLogin(data) {
     return this._http
@@ -47,6 +48,19 @@ export class UsersService implements OnInit {
   userSignUp(data) {
     return this._http
       .post(this.baseUrl + "/register", data)
-      .pipe(retry(1), timeout(10000));
+      .pipe(
+        retry(1), 
+        timeout(10000)
+      );
+  }
+
+  // get User detail by Id
+  getUserDetailById(id){
+    return this._http
+      .get(this.baseUrl + "/getUserByUserId/" +id)
+      .pipe(
+        retry(1), 
+        timeout(10000)
+      );
   }
 }

@@ -6,6 +6,7 @@ import { ProfileRoutingModule } from './profile-routing.module';
 import { ProfileLayoutComponent } from './profile-layout/profile-layout.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { PostsModule } from '../posts/posts.module';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [ProfileLayoutComponent, UserProfileComponent],
@@ -13,7 +14,8 @@ import { PostsModule } from '../posts/posts.module';
     CommonModule,
     ProfileRoutingModule,
     PostsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    InfiniteScrollModule
   ]
 })
 export class ProfileModule { }

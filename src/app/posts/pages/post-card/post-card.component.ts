@@ -22,7 +22,4 @@ export class PostCardComponent implements OnInit {
     $event.preventDefault();
     this.router.navigate(['/detail']);
   }
-  viewUserById(){
-    this.router.navigate(['/profile']);
-  }
 }

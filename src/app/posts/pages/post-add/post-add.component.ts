@@ -15,7 +15,7 @@ import { Store } from 'src/app/shared/models/store.model';
 export class PostAddComponent implements OnInit {
   store$: Observable<Store>;
   private _unsubscribe$ = new Subject<boolean>();
-  user_id: number = null;
+  user_id = 38;
   addPostForm:FormGroup;
   isAddPostFormSubmited: boolean = false;
   
@@ -30,10 +30,10 @@ export class PostAddComponent implements OnInit {
     console.log(this._storeService.getCurrentState());
 
     this.addPostForm = this.formBuilder.group({
-      user_id: new FormControl(null),
-      post_id: new FormControl(null),
+      user_id: new FormControl(this.user_id),
+      // post_id: new FormControl(null),
       title: [null, [Validators.required]],
-      links:this.formBuilder.array([]),
+      link_urls:this.formBuilder.array([]),
       description:[null, Validators.required]
     })
     this.addNewLink();
@@ -42,7 +42,6 @@ export class PostAddComponent implements OnInit {
   addPostFormSubmit(){
     this.isAddPostFormSubmited= true;
     if(this.addPostForm.valid){
-      this.addPostForm.controls.post_id.setValue(Math.floor(Math.random()*10) + 1);
       this.addPostForm.controls.user_id.setValue(this.user_id);
       console.log(this.addPostForm.value)
       this._postService.addUpdatePosts(this.addPostForm.value)
@@ -64,14 +63,14 @@ export class PostAddComponent implements OnInit {
   }
 
   // Urls
-  get links() {
-    return this.addPostForm.get('links') as FormArray
+  get link_urls() {
+    return this.addPostForm.get('link_urls') as FormArray
   }
 
-  // add new links field
+  // add new link_urls field
   addNewLink() {
-    if(this.links.length < 5){
-      this.links.push(this.addLink());
+    if(this.link_urls.length < 5){
+      this.link_urls.push(this.addLink());
     }
     else{
       alert("Cant more than 5");
@@ -85,7 +84,7 @@ export class PostAddComponent implements OnInit {
     });
   }
   removeLink(index) {
-    this.links.removeAt(index);
+    this.link_urls.removeAt(index);
   }
 
   ngOnDestroy() {

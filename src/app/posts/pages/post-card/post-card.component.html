@@ -14,7 +14,7 @@
     </li>
   </ul>
   <p class="card-foot">
-    <span>{{postsData?.post?.created_on | date}}</span>
-    <span class="posted-by" (click)="viewUserById()"><b>By:</b> {{postsData?.user?.name}}</span>
+    <span [title]="postsData?.post?.created_on">{{postsData?.post?.created_on | date}}</span>
+    <span class="posted-by" [routerLink]="['/profile', postsData?.user?.user_id]"><b>By:</b> {{postsData?.user?.name}}</span>
   </p>
 </div>

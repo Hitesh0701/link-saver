@@ -13,7 +13,7 @@
         </div>
       </div>
 
-      <div formArrayName="links" class="field-outer">
+      <div formArrayName="link_urls" class="field-outer">
         <span class="add-links-label">
           <label>
             Links
@@ -21,8 +21,8 @@
           <div (click)="addNewLink()" class="text-center" aria-disabled="true"><span class="icons bg-success"><i class="icon-plus"></i></span></div>
         </span>
 
-        <div [formGroupName]="i" class="links-fields" *ngFor="let item of links.controls; index as i">
-          <div class="link-field-outer" [class.pad-right]="links.length > 1">
+        <div [formGroupName]="i" class="links-fields" *ngFor="let item of link_urls.controls; index as i">
+          <div class="link-field-outer" [class.pad-right]="link_urls.length > 1">
             <input type="text" class="form-control link-field" placeholder="Enter link" formControlName="link_urls"
               [class.is-invalid]="item.controls.link_urls.invalid && (item.controls.link_urls.dirty || item.controls.link_urls.touched) && isAddPostFormSubmited">
             <div
@@ -30,7 +30,7 @@
               class="error-msg">
               <p *ngIf="item.controls.link_urls.hasError('required')">Link is required </p>
             </div>
-            <div class="remove-icon" (click)="removeLink(i)" *ngIf="links.length > 1"><span class="icons bg-danger"><i class="icon-minus"></i></span></div>    
+            <div class="remove-icon" (click)="removeLink(i)" *ngIf="link_urls.length > 1"><span class="icons bg-danger"><i class="icon-minus"></i></span></div>    
           </div>
         </div>
       </div>
