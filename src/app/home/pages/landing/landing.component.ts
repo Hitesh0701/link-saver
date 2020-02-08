@@ -1,8 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { takeUntil } from "rxjs/operators";
-import { Subject } from "rxjs";
+import { Subject, Observable } from "rxjs";
 import { UtilityService } from "src/app/core/utilities/utility.service";
 import { PostService } from "src/app/core/services/posts/post.service";
+import { UserData } from "src/app/shared/models/store.model";
 
 @Component({
   selector: "app-landing",
@@ -15,6 +16,7 @@ export class LandingComponent implements OnInit {
   currentPage = 0;
   postsLimit = 5;
   lastPage: number;
+  userData$: Observable<UserData>;
 
   constructor(
     private _postsService: PostService,
@@ -25,15 +27,20 @@ export class LandingComponent implements OnInit {
     if (localStorage.getItem("token")) {
       this.getAllPosts();
     }
+    this.userData$
+      .pipe(takeUntil(this._unsubscribe$))
+      .subscribe((userData: UserData) => {
+        console.log("userData in landing page", userData);
+        // this.userDetails = userData;
+      });
   }
 
-  onScroll(){
-    if(this.currentPage < this.lastPage){
+  onScroll() {
+    if (this.currentPage < this.lastPage) {
       this.getAllPosts();
     }
   }
-  
-  
+
   // get all post when user loggedin
   getAllPosts() {
     this.currentPage++;
@@ -42,15 +49,15 @@ export class LandingComponent implements OnInit {
       limit: this.postsLimit
     };
     this._postsService
-    .getAllPosts(params)
-    .pipe(takeUntil(this._unsubscribe$))
-    .subscribe(
-      (response: any) => {
+      .getAllPosts(params)
+      .pipe(takeUntil(this._unsubscribe$))
+      .subscribe(
+        (response: any) => {
           console.log("Posts", response);
           this.lastPage = response.data.lastPage;
           this.allPosts = [...this.allPosts, ...response.data.postsList];
-          console.log(this.allPosts)
-          console.log("page", this.currentPage)
+          // console.log(this.allPosts)
+          // console.log("page", this.currentPage)
         },
         error => {
           this._utility.routingAccordingToError(error);

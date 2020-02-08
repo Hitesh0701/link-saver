@@ -1,4 +1,4 @@
-/* You can add global styles to this file, and also import other style files */ 
+/* You can add global styles to this file, and also import other style files */
 //----------------------------------*\
 // SCSS MIXINS
 //----------------------------------*/
@@ -10,13 +10,14 @@
 
 
 @import 'assets/scss/partials/_header.scss',
-    'assets/scss/partials/_vars.scss',
-    'assets/scss/partials/_forms.scss',
-    'assets/scss/partials/_landing.scss',
-    'assets/scss/partials/_cards.scss';
+'assets/scss/partials/_vars.scss',
+'assets/scss/partials/_forms.scss',
+'assets/scss/partials/_landing.scss',
+'assets/scss/partials/_cards.scss',
+'assets/scss/partials/_global.scss';
 
-    // ,
-    // 'assets/scss/partials/_main.scss'
+// ,
+// 'assets/scss/partials/_main.scss'
 
 
 @import 'assets/scss/modules/icon.scss';
