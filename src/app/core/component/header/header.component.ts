@@ -9,6 +9,7 @@ import { HttpResponse } from "@angular/common/http";
 import { UtilityService } from "../../utilities/utility.service";
 import { Store } from "src/app/shared/models/store.model";
 import { StoreService } from "../../services/store.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-header",
@@ -35,14 +36,14 @@ export class HeaderComponent implements OnInit {
     private modalService: BsModalService,
     private _userService: UsersService,
     private _utility: UtilityService,
-    private _storeService: StoreService
+    private _storeService: StoreService,
+    private _router: Router
   ) {}
 
   ngOnInit() {
     if (localStorage.getItem("token")) {
       this._userService.isLoggedIn.next(true);
-      this.userData =this._storeService.getCurrentState().userData;
-
+      this.userData = this._storeService.getCurrentState().userData;
     } else {
       this._userService.isLoggedIn.next(false);
     }
@@ -110,6 +111,7 @@ export class HeaderComponent implements OnInit {
               "token",
               response.headers.get("Authorization")
             );
+            this._userService.isLoggedIn.next(true);
             this._utility.loaderStop();
             this._utility.toastSuccess("Success", "Welcome to Link Saver.");
             console.log("Result", response);
