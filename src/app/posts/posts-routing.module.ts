@@ -16,6 +16,10 @@ const routes: Routes = [
       {
         path: "add",
         component: PostAddComponent
+      },
+      {
+        path: "edit/:id",
+        component: PostAddComponent
       }
     ]
   }

@@ -58,7 +58,7 @@ export class PostService {
   // delete any post
   deletePost(data) {
     return this._http
-      .post(this.baseUrl + "/deletePost", data)
+      .delete(this.baseUrl + "/deletePost", data)
       .pipe(retry(1), timeout(10000));
   }
 }

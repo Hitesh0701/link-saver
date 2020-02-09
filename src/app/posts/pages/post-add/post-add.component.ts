@@ -6,6 +6,7 @@ import { takeUntil } from 'rxjs/operators';
 import { PostService } from 'src/app/core/services/posts/post.service';
 import { StoreService } from 'src/app/core/services/store.service';
 import { Store } from 'src/app/shared/models/store.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-post-add',
@@ -18,17 +19,18 @@ export class PostAddComponent implements OnInit {
   user_id = 38;
   addPostForm:FormGroup;
   isAddPostFormSubmited: boolean = false;
-  
+  post_id: any;
+
   constructor(
     public formBuilder: FormBuilder,
     private _postService: PostService,
-    private _storeService: StoreService
-  ) { }
+    private _storeService: StoreService,
+    private _activateRoute: ActivatedRoute
+  ) {
+    this.post_id = this._activateRoute.snapshot.paramMap.get('id');
+   }
 
   ngOnInit() {
-
-    console.log(this._storeService.getCurrentState());
-
     this.addPostForm = this.formBuilder.group({
       user_id: new FormControl(this.user_id),
       // post_id: new FormControl(null),
@@ -37,6 +39,9 @@ export class PostAddComponent implements OnInit {
       description:[null, Validators.required]
     })
     this.addNewLink();
+    if(this.post_id){
+      console.log("Post id", this.post_id)
+    }
   }
 
   addPostFormSubmit(){

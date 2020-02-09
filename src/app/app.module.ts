@@ -5,9 +5,9 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { CoreModule } from "./core/core.module";
 import { BsDropdownModule } from "ngx-bootstrap/dropdown";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ModalModule } from "ngx-bootstrap/modal";
 import { PostsModule } from "./posts/posts.module";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { TokenInterceptorService } from "./core/interceptors/token-interceptor.service";
 
@@ -29,10 +29,10 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     CoreModule,
     PostsModule,
     BsDropdownModule.forRoot(),
-    BrowserAnimationsModule,
     ModalModule.forRoot(),
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
-    NgxUiLoaderHttpModule
+    NgxUiLoaderHttpModule,
+    BrowserAnimationsModule
   ],
   providers: [
     {

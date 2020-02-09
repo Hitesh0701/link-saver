@@ -1,7 +1,7 @@
 import { Component, OnInit, TemplateRef } from "@angular/core";
 import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { validateAllFormFields } from "../../utilities/custom-validators";
+import { validateAllFormFields, passwordMatchValidator } from "../../utilities/custom-validators";
 import { UsersService } from "../../services/users/users.service";
 import { Subject, BehaviorSubject, Observable } from "rxjs";
 import { takeUntil } from "rxjs/operators";
@@ -58,7 +58,11 @@ export class HeaderComponent implements OnInit {
       ]),
       password: new FormControl("", Validators.required),
       confirmPassword: new FormControl("", Validators.required)
-    });
+    },
+    {
+      validators: passwordMatchValidator
+    }
+    );
 
     // login form
     this.loginForm = new FormGroup({

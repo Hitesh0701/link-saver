@@ -44,6 +44,12 @@
             a{
                 word-break: break-all;
                 @include webkit-box(1);
+                &:not([href]){
+                    color: $link_blue;
+                    &:hover{
+                        text-decoration: underline;
+                    }
+                }
             }
             b{
                 position: absolute;
@@ -106,6 +112,7 @@
                 border-bottom: 1px solid $border-clr-light;
                 padding-bottom: 7px;
                 font-weight: $medium;
+                text-transform: capitalize;
             }
         }
     }

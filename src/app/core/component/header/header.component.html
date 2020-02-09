@@ -92,7 +92,7 @@
             </div>
           </div>
           <div class="field-outer">
-            <input type="password" class="form-control" placeholder="Enter password" formControlName="password"
+            <input type="password" class="form-control" (paste)="$event.preventDefault()" placeholder="Enter password" formControlName="password"
               [class.is-invalid]="signUpForm.controls.password.invalid && (signUpForm.controls.password.dirty || signUpForm.controls.password.touched) && isSignUpFormSubmitted">
             <div
               *ngIf="(signUpForm.controls.password.invalid && (signUpForm.controls.password.dirty || signUpForm.controls.password.touched) && isSignUpFormSubmitted)"
@@ -101,13 +101,19 @@
             </div>
           </div>
           <div class="field-outer">
-            <input type="password" class="form-control" placeholder="Enter confirm password"
+            <input type="text" class="form-control" (paste)="$event.preventDefault()" placeholder="Enter confirm password"
               formControlName="confirmPassword"
               [class.is-invalid]="signUpForm.controls.confirmPassword.invalid && (signUpForm.controls.confirmPassword.dirty || signUpForm.controls.confirmPassword.touched) && isSignUpFormSubmitted">
             <div
               *ngIf="(signUpForm.controls.confirmPassword.invalid && (signUpForm.controls.confirmPassword.dirty || signUpForm.controls.confirmPassword.touched) && isSignUpFormSubmitted)"
               class="error-msg">
               <p *ngIf="signUpForm.controls.confirmPassword.hasError('required')"> Confirm password is required </p>
+            </div>
+            <!--Passwords not match error-->
+            <div
+            *ngIf="(!signUpForm.controls.confirmPassword.hasError('required') && signUpForm.errors?.passwordmatchfailed) && isSignUpFormSubmitted"
+            class="error-msg">
+              <p>Both password should be same</p>
             </div>
           </div>
           <div class="btn-outer mr-40 login-btn-outer text-center">
